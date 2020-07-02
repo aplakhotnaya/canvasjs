@@ -31,7 +31,7 @@ try{
     console.log(enc);
     console.log(decodeURI(enc));
 
-    var sr = JSON.parse(decodeURI(enc));
+    var sr = JSON.parse(unescape(enc));
     console.log(sr);
     // Reference the Chatter user's URL from Context.Links object.
     var url = sr.context.links.chatterFeedsUrl+"/news/"+sr.context.user.userId+"/feed-items";
