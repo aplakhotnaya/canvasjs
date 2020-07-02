@@ -33,7 +33,7 @@ app.post('/signedrequest', function(req, res) {
         console.log(context);
         console.log(context instanceof Object);
         console.log(context instanceof String);
-
+        var signedRequestJson=JSON.stringify(context);
     request(contactRequest, function(err, response, body) {
         var qr = qrcode.qrcode(4, 'L'),
             contact = JSON.parse(body).records[0],
@@ -43,7 +43,7 @@ app.post('/signedrequest', function(req, res) {
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
-            res.render('index', {context: context, imgTag: imgTag, contact:contact});
+            res.render('index', {context: context, imgTag: imgTag, contact:contact, signedRequestJson: signedRequestJson});
     });
 
 });
