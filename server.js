@@ -17,6 +17,11 @@ app.post('/signedrequest', function(req, res) {
 
 console.log(req.body.signed_request);
 console.log(consumerSecret);
+console.log(decode(req.body.signed_request, consumerSecret));
+console.log(signedRequest.context);
+console.log(signedRequest.client.oauthToken);
+console.log(signedRequest.client.instanceUrl);
+
 
 
     var signedRequest = decode(req.body.signed_request, consumerSecret),
@@ -25,10 +30,7 @@ console.log(consumerSecret);
         instanceUrl = signedRequest.client.instanceUrl,
 
 
-        console.log(signedRequest);
-        console.log(context);
-        console.log(oauthToken);
-        console.log(instanceUrl);
+
 
 
         query = "SELECT Id, FirstName, LastName, Phone, Email FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
@@ -38,6 +40,9 @@ console.log(consumerSecret);
             headers: {
                 'Authorization': 'OAuth ' + oauthToken
             }
+
+
+    
         };
 
     request(contactRequest, function(err, response, body) {
