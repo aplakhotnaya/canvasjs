@@ -42,7 +42,7 @@ console.log(decode(req.body.signed_request, consumerSecret));
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
-        localStorage.setItem('sfContext', context);
+        window.sessionStorage.setItem('sfContext', context);
         res.render('index', {context: context, imgTag: imgTag, contact:contact,signedRequestJson: JSON.stringify(context)});
     });
 
