@@ -15,8 +15,8 @@ app.use(express.static(__dirname + '/public'));
 app.post('/signedrequest', function(req, res) {
 
 console.log(req.body.signed_request);
-console.log(consumerSecret);
-console.log(decode(req.body.signed_request, consumerSecret));
+
+
     var signedRequest = decode(req.body.signed_request, consumerSecret),
         context = signedRequest.context,
         oauthToken = signedRequest.client.oauthToken,
@@ -28,9 +28,6 @@ console.log(decode(req.body.signed_request, consumerSecret));
             headers: {
                 'Authorization': 'OAuth ' + oauthToken
             }
-
-
-    
         };
     
     request(contactRequest, function(err, response, body) {
@@ -38,11 +35,11 @@ console.log(decode(req.body.signed_request, consumerSecret));
             contact = JSON.parse(body).records[0],
             text = 'MECARD:N:' + contact.LastName + ',' + contact.FirstName + ';TEL:' + contact.Phone + ';EMAIL:' + contact.Email + ';;';
         
-            console.log(contact);
+        
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
-            res.render('index', {context: context, imgTag: imgTag, contact:contact,signedRequestJson: JSON.stringify(context)});
+            res.render('index', {context: context, imgTag: imgTag, contact:contact});
     });
 
 });
