@@ -26,6 +26,7 @@
 
 
 <script>
+try{
     var enc= '<%=signedRequestJson%>';
     var sr = JSON.parse(enc.replace('&quot;'));
     console.log(sr);
@@ -43,6 +44,10 @@
     }
     }
     });
+}catch(e){
+console.log(e)
+}
+
 
 </script>
 
