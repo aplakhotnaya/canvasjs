@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.post('/signedrequest', function(req, res) {
 
-console.log(req.body.signed_request);
+
 
 
     var signedRequest = decode(req.body.signed_request, consumerSecret),
@@ -29,7 +29,9 @@ console.log(req.body.signed_request);
                 'Authorization': 'OAuth ' + oauthToken
             }
         };
-    
+ 
+        console.log(context);
+
     request(contactRequest, function(err, response, body) {
         var qr = qrcode.qrcode(4, 'L'),
             contact = JSON.parse(body).records[0],
