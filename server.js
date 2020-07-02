@@ -21,7 +21,7 @@ console.log(decode(req.body.signed_request, consumerSecret));
         context = signedRequest.context,
         oauthToken = signedRequest.client.oauthToken,
         instanceUrl = signedRequest.client.instanceUrl,
-        query = "SELECT Id, FirstName, LastName, Phone, Email FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
+        query = "SELECT Id, FirstName, LastName, Phone, Email, AccountId FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
 
         contactRequest = {
             url: instanceUrl + '/services/data/v29.0/query?q=' + query,
@@ -32,7 +32,7 @@ console.log(decode(req.body.signed_request, consumerSecret));
 
     
         };
-
+var accId='';
     request(contactRequest, function(err, response, body) {
         var qr = qrcode.qrcode(4, 'L'),
             contact = JSON.parse(body).records[0],
@@ -42,9 +42,28 @@ console.log(decode(req.body.signed_request, consumerSecret));
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
-        window.sessionStorage.setItem('sfContext', context);
+accId=contact.AccountId;
+       
         res.render('index', {context: context, imgTag: imgTag, contact:contact,signedRequestJson: JSON.stringify(context)});
     });
+
+
+    var url = sr.context.links.sobjectUrl+"Account/" + accId + "?_HttpMethod=PATCH";
+    var externalId = 'TEST001';
+    var accountInfo = {"Name" : "New Acc Name " + externalId};
+      Sfdc.canvas.client.ajax(url,
+            {	client : sr.client,
+                method: 'POST',
+                contentType: "application/json",
+                data: JSON.stringify(accountInfo),
+                success : function(data) {
+                    if (204 === data.status) {
+                        alert("Success");
+                    } else {
+                        alert("Not Success result code : " + data.status);
+                    }
+                }
+            });
 
 });
 
