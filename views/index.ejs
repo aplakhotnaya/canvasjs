@@ -29,7 +29,9 @@
 try{
     var enc= '<%=signedRequestJson%>';
     console.log(enc);
-    var sr = JSON.parse(enc.replace('&quot;','"'));
+    console.log(decodeURI(enc));
+
+    var sr = JSON.parse(decodeURI(enc));
     console.log(sr);
     // Reference the Chatter user's URL from Context.Links object.
     var url = sr.context.links.chatterFeedsUrl+"/news/"+sr.context.user.userId+"/feed-items";
