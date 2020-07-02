@@ -29,14 +29,7 @@
     var sr = localStorage.getItem('context');
     console.log(sr);
 
-
-
-
-
-
-
-
-    oauthToken = sr.client.oauthToken,
+   /*oauthToken = sr.client.oauthToken,
     instanceUrl = sr.client.instanceUrl,
     query = "SELECT Id, FirstName, LastName, Phone, Email FROM Contact WHERE Id = '" + sr.environment.record.Id + "'",
 
@@ -50,6 +43,7 @@
 
     };
 
+
 request(contactRequest, function(err, response, body) {
     var qr = qrcode.qrcode(4, 'L'),
         contact = JSON.parse(body).records[0];
@@ -58,7 +52,7 @@ request(contactRequest, function(err, response, body) {
         console.log(contact);
    
 });
-
+*/
 
 
     }
