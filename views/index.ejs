@@ -5,6 +5,7 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
+    <script src=""></script>
 <div class="canvas-app">
     <img src="nodejs.png"/>
     <p>Hello, <%= context.user.firstName %>. This is a web app written in Node.js embedded in your Salesforce page (It could also be written in any other language).</p>
@@ -20,7 +21,7 @@
         <tr><td>Phone:</td><td><%= contact.Phone %></td></tr>
         <tr><td>Email:</td><td><%= contact.Email %></td></tr>
     </table>
-
+    <%- JSON.stringify(context) %>
 <input type="text" value="<%= contact.Email %>"/>
 
 
@@ -30,7 +31,7 @@ try{
     var enc= '<%=signedRequestJson%>';
     console.log(enc);
     
-    console.log(process.env.context);
+   
   /*  var sr = JSON.parse(unescape(enc));
     console.log(sr);
     // Reference the Chatter user's URL from Context.Links object.

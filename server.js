@@ -1,3 +1,7 @@
+var context={};
+
+
+
 var express = require('express'),
     bodyParser = require('body-parser'),
     request = require('request'),
@@ -12,7 +16,7 @@ app.use(express.static(__dirname + '/public'));
 
         app.post('/signedrequest', function(req, res) {
         var signedRequest = decode(req.body.signed_request, consumerSecret);
-        var    context = signedRequest.context;
+               context = signedRequest.context;
         var    oauthToken = signedRequest.client.oauthToken;
         var    instanceUrl = signedRequest.client.instanceUrl;
         var    query = "SELECT Id, FirstName, LastName, Phone, Email, AccountId FROM Contact WHERE Id = '" + context.environment.record.Id + "'";
