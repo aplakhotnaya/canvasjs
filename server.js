@@ -31,6 +31,8 @@ app.post('/signedrequest', function(req, res) {
         };
  
         console.log(context);
+        console.log(context instanceof Object);
+        console.log(context instanceof String);
 
     request(contactRequest, function(err, response, body) {
         var qr = qrcode.qrcode(4, 'L'),
