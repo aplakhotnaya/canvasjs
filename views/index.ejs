@@ -26,14 +26,24 @@
 <button onclick="updateContact()" label="Update Contact"> Update Contact </button>
 <script>
     function updateContact() {
-console.log('updateContact');
-var sr=   '<%= JSON.stringify(context) %>';
-
-
-var sr1=   '<%= context %>';
-console.log(sr1);
-console.log(sr);
-console.log(JSON.parse(sr));
+        var sr = JSON.parse('<%=signedRequestJson%>');
+        var accId =sr.context.environment.parameters.accountid;
+        var url = sr.context.links.sobjectUrl+"Account/" + accId + "?_HttpMethod=PATCH";
+        var externalId = 'TEST001';
+        var accountInfo = {"Name" : "New Acc Name " + externalId};
+          Sfdc.canvas.client.ajax(url,
+                {	client : sr.client,
+                    method: 'POST',
+                    contentType: "application/json",
+                    data: JSON.stringify(accountInfo),
+                    success : function(data) {
+                        if (204 === data.status) {
+                            alert("Success");
+                        } else {
+                            alert("Not Success result code : " + data.status);
+                        }
+                    }
+                });
     }
 </script>
 

@@ -43,7 +43,7 @@ console.log(decode(req.body.signed_request, consumerSecret));
         qr.make();
         var imgTag = qr.createImgTag(4);
       
-        res.render('index', {context: context, imgTag: imgTag, contact:contact});
+        res.render('index', {context: context, imgTag: imgTag, contact:contact,signedRequestJson: JSON.stringify(context)});
     });
 
 });
