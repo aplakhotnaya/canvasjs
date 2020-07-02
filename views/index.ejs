@@ -26,7 +26,7 @@
 <button onclick="updateContact()" label="Update Contact"> Update Contact </button>
 <script>
     function updateContact() {
-        var sr = JSON.parse('<%=signedRequestJson%>');
+        var sr = '<%=context%>';
         var accId =sr.context.environment.parameters.accountid;
         var url = sr.context.links.sobjectUrl+"Account/" + accId + "?_HttpMethod=PATCH";
         var externalId = 'TEST001';
