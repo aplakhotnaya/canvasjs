@@ -13,6 +13,7 @@ app.use(bodyParser()); // pull information from html in POST
 app.use(express.static(__dirname + '/public'));
 
 app.post('/signedrequest', function(req, res) {
+
 console.log(req.body.signed_request);
 console.log(consumerSecret);
 console.log(decode(req.body.signed_request, consumerSecret));
@@ -41,7 +42,7 @@ console.log(decode(req.body.signed_request, consumerSecret));
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
-        localStorage.setItem('context', context);
+      
         res.render('index', {context: context, imgTag: imgTag, contact:contact});
     });
 
