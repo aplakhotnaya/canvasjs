@@ -32,7 +32,7 @@ console.log(decode(req.body.signed_request, consumerSecret));
 
     
         };
-    var accId='';
+    
     request(contactRequest, function(err, response, body) {
         var qr = qrcode.qrcode(4, 'L'),
             contact = JSON.parse(body).records[0],
@@ -42,9 +42,7 @@ console.log(decode(req.body.signed_request, consumerSecret));
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
-    accId=contact.AccountId;
-       
-        res.render('index', {context: context, imgTag: imgTag, contact:contact,signedRequestJson: JSON.stringify(context)});
+            res.render('index', {context: context, imgTag: imgTag, contact:contact,signedRequestJson: JSON.stringify(context)});
     });
 
 
