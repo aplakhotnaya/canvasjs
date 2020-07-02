@@ -29,7 +29,7 @@ app.use(express.static(__dirname + '/public'));
             };
  
         console.log(context);
-        process.env.context=context;
+      console.log(req);
         var signedRequestJson=JSON.stringify(context);
     request(contactRequest, function(err, response, body) {
         var qr = qrcode.qrcode(4, 'L'),
