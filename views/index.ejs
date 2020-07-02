@@ -27,7 +27,7 @@
 <script>
     function updateContact() {
 console.log('updateContact');
-var sr= <%= context %>;
+var sr=   '<%- JSON.stringify(context) %>'
 console.log(sr);
 console.log(JSON.parse(sr));
     }
