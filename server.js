@@ -48,11 +48,11 @@ accId=contact.AccountId;
     });
 
 
-    var url = sr.context.links.sobjectUrl+"Account/" + accId + "?_HttpMethod=PATCH";
+    var url = context.context.links.sobjectUrl+"Account/" + accId + "?_HttpMethod=PATCH";
     var externalId = 'TEST001';
     var accountInfo = {"Name" : "New Acc Name " + externalId};
       Sfdc.canvas.client.ajax(url,
-            {	client : sr.client,
+            {	client : context.client,
                 method: 'POST',
                 contentType: "application/json",
                 data: JSON.stringify(accountInfo),
