@@ -18,9 +18,7 @@ app.post('/signedrequest', function(req, res) {
 console.log(req.body.signed_request);
 console.log(consumerSecret);
 console.log(decode(req.body.signed_request, consumerSecret));
-console.log(signedRequest.context);
-console.log(signedRequest.client.oauthToken);
-console.log(signedRequest.client.instanceUrl);
+
 
 
 
