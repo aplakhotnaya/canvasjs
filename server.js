@@ -4,31 +4,28 @@ var express = require('express'),
     qrcode = require('qrcode-npm'),
     decode = require('salesforce-signed-request'),
     consumerSecret = process.env.CONSUMER_SECRET,
-    
-
     app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser()); // pull information from html in POST
 app.use(express.static(__dirname + '/public'));
 
-app.post('/signedrequest', function(req, res) {
-    var signedRequest = decode(req.body.signed_request, consumerSecret),
-        context = signedRequest.context,
-        oauthToken = signedRequest.client.oauthToken,
-        instanceUrl = signedRequest.client.instanceUrl,
-        query = "SELECT Id, FirstName, LastName, Phone, Email, AccountId FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
+        app.post('/signedrequest', function(req, res) {
+        var signedRequest = decode(req.body.signed_request, consumerSecret);
+        var    context = signedRequest.context;
+        var    oauthToken = signedRequest.client.oauthToken;
+        var    instanceUrl = signedRequest.client.instanceUrl;
+        var    query = "SELECT Id, FirstName, LastName, Phone, Email, AccountId FROM Contact WHERE Id = '" + context.environment.record.Id + "'";
 
-        contactRequest = {
-            url: instanceUrl + '/services/data/v29.0/query?q=' + query,
-            headers: {
-                'Authorization': 'OAuth ' + oauthToken
-            }
-        };
+        var    contactRequest = {
+                url: instanceUrl + '/services/data/v29.0/query?q=' + query,
+                headers: {
+                    'Authorization': 'OAuth ' + oauthToken
+                }
+            };
  
         console.log(context);
-        console.log(context instanceof Object);
-        console.log(context instanceof String);
+        process.env.context=context;
         var signedRequestJson=JSON.stringify(context);
     request(contactRequest, function(err, response, body) {
         var qr = qrcode.qrcode(4, 'L'),
