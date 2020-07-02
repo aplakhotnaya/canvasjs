@@ -27,6 +27,7 @@
 <script>
     function updateContact() {
         var sr = '<%=context%>';
+        console.log(sr);
         var accId =sr.context.environment.parameters.accountid;
         var url = sr.context.links.sobjectUrl+"Account/" + accId + "?_HttpMethod=PATCH";
         var externalId = 'TEST001';
