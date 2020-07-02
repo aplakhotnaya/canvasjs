@@ -32,7 +32,7 @@ console.log(decode(req.body.signed_request, consumerSecret));
 
     
         };
-var accId='';
+    var accId='';
     request(contactRequest, function(err, response, body) {
         var qr = qrcode.qrcode(4, 'L'),
             contact = JSON.parse(body).records[0],
@@ -42,13 +42,13 @@ var accId='';
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
-accId=contact.AccountId;
+    accId=contact.AccountId;
        
         res.render('index', {context: context, imgTag: imgTag, contact:contact,signedRequestJson: JSON.stringify(context)});
     });
 
 
-    var url = context.context.links.sobjectUrl+"Account/" + accId + "?_HttpMethod=PATCH";
+   /* var url = context.context.links.sobjectUrl+"Account/" + accId + "?_HttpMethod=PATCH";
     var externalId = 'TEST001';
     var accountInfo = {"Name" : "New Acc Name " + externalId};
       Sfdc.canvas.client.ajax(url,
@@ -63,7 +63,7 @@ accId=contact.AccountId;
                         alert("Not Success result code : " + data.status);
                     }
                 }
-            });
+            });*/
 
 });
 
