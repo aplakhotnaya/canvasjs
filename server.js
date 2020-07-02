@@ -13,10 +13,6 @@ app.use(bodyParser()); // pull information from html in POST
 app.use(express.static(__dirname + '/public'));
 
 app.post('/signedrequest', function(req, res) {
-
-
-
-
     var signedRequest = decode(req.body.signed_request, consumerSecret),
         context = signedRequest.context,
         oauthToken = signedRequest.client.oauthToken,
@@ -47,6 +43,13 @@ app.post('/signedrequest', function(req, res) {
     });
 
 });
+
+
+
+
+
+
+
 
 app.set('port', process.env.PORT || 5000);
 
