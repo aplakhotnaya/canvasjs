@@ -19,11 +19,17 @@ console.log(req.body.signed_request);
 console.log(consumerSecret);
 
 
-    // You could save this information in the user session if needed
     var signedRequest = decode(req.body.signed_request, consumerSecret),
         context = signedRequest.context,
         oauthToken = signedRequest.client.oauthToken,
         instanceUrl = signedRequest.client.instanceUrl,
+
+
+        console.log(signedRequest);
+        console.log(context);
+        console.log(oauthToken);
+        console.log(instanceUrl);
+
 
         query = "SELECT Id, FirstName, LastName, Phone, Email FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
 
@@ -38,6 +44,8 @@ console.log(consumerSecret);
         var qr = qrcode.qrcode(4, 'L'),
             contact = JSON.parse(body).records[0],
             text = 'MECARD:N:' + contact.LastName + ',' + contact.FirstName + ';TEL:' + contact.Phone + ';EMAIL:' + contact.Email + ';;';
+        
+            console.log(contact);
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
