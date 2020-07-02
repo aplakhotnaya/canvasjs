@@ -13,24 +13,13 @@ app.use(bodyParser()); // pull information from html in POST
 app.use(express.static(__dirname + '/public'));
 
 app.post('/signedrequest', function(req, res) {
-
-
 console.log(req.body.signed_request);
 console.log(consumerSecret);
 console.log(decode(req.body.signed_request, consumerSecret));
-
-
-
-
     var signedRequest = decode(req.body.signed_request, consumerSecret),
         context = signedRequest.context,
         oauthToken = signedRequest.client.oauthToken,
         instanceUrl = signedRequest.client.instanceUrl,
-
-
-
-
-
         query = "SELECT Id, FirstName, LastName, Phone, Email FROM Contact WHERE Id = '" + context.environment.record.Id + "'",
 
         contactRequest = {
@@ -52,7 +41,7 @@ console.log(decode(req.body.signed_request, consumerSecret));
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
-        res.render('index', {context: context, imgTag: imgTag});
+        res.render('index', {context: context, imgTag: imgTag, contact:contact});
     });
 
 });
