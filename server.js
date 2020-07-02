@@ -45,24 +45,6 @@ console.log(decode(req.body.signed_request, consumerSecret));
             res.render('index', {context: context, imgTag: imgTag, contact:contact,signedRequestJson: JSON.stringify(context)});
     });
 
-var accId='0012X000022MskL';
-    var url = context.links.sobjectUrl+"Account/" + accId + "?_HttpMethod=PATCH";
-    var externalId = 'TEST001';
-    var accountInfo = {"Name" : "New Acc Name " + externalId};
-      Sfdc.canvas.client.ajax(url,
-            {	client : context.client,
-                method: 'POST',
-                contentType: "application/json",
-                data: JSON.stringify(accountInfo),
-                success : function(data) {
-                    if (204 === data.status) {
-                        alert("Success");
-                    } else {
-                        alert("Not Success result code : " + data.status);
-                    }
-                }
-            });
-
 });
 
 app.set('port', process.env.PORT || 5000);
