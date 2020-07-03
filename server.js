@@ -65,10 +65,11 @@ body:'{"email":"test@test.com"}'
 console.log(sfreq);
 
 request(sfreq, function(err, response, body) {
-    console.log(err);
-    console.log(response);
+    console.log(response.status);
+    console.log(response.statusCode);
     console.log(body);
-    res.send(response.statusCode );
+    
+    res.sendStatus(response.status );
 
 });
    
