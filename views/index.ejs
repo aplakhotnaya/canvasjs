@@ -8,8 +8,11 @@
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   
-    <script src=" canvas-all.js"></script>
+    <script src="canvas-all.js"></script>
 <script>
+
+Sfdc.canvas.onReady(function () {
+    console.log("Canvas application ready");
     Sfdc.canvas.client.refreshSignedRequest(function(data) {
         if (data.status === 200) {
             var signedRequest =  data.payload.response;
@@ -17,6 +20,8 @@
             var obj = JSON.parse(Sfdc.canvas.decode(part));
         }
     });
+});
+
 </script>
 <div class="canvas-app">
     <img src="nodejs.png"/>
