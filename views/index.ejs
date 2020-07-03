@@ -16,16 +16,17 @@
   
    
 <script>
-
+var sr;
 Sfdc.canvas.onReady(function () {
     console.log("Canvas application ready");
     Sfdc.canvas.client.refreshSignedRequest(function(data) {
         console.log(data.status);
         if (data.status === 200) {
            
-            var signedRequest =  data.payload.response;
+            signedRequest =  data.payload.response;
             var part = signedRequest.split('.')[1];
             var obj = JSON.parse(Sfdc.canvas.decode(part));
+            sr=obj;
             console.log(signedRequest);
             console.log(part);
             console.log(obj);
@@ -33,11 +34,17 @@ Sfdc.canvas.onReady(function () {
     });
 });
 
+
+
+
+console.log(sr);
+
+
 </script>
 <script>
 
-    var sr = JSON.parse('<%=signedRequestJson%>');
-console.log(sr.context);
+   
+
 
 /*var url = sr.context.links.chatterFeedsUrl+"/news/"+sr.context.user.userId+"/feed-items";
 var body = {body : {messageSegments : [{type: "Text", text: "Some Chatter Post"}]}};
