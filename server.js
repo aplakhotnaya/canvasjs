@@ -45,7 +45,7 @@ app.use(express.static(__dirname + '/public'));
             res.render('index', {context: context, 
                 imgTag: imgTag, 
                 contact:contact, 
-                signedRequestJson: signedRequestJson,
+                
                 oauthToken:oauthToken});
     });
 
