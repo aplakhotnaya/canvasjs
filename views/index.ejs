@@ -33,7 +33,7 @@
 
     $("#like").click(function(){
         $.post("/updaterecord",
-        '<%= JSON.stringify(contact) %>' ,
+        '<%- JSON.stringify(contact) %>' ,
         function(data,status){
           console.log("Data: " + data + "\nStatus: " + status);
         });
