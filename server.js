@@ -52,7 +52,7 @@ app.use(express.static(__dirname + '/public'));
 });
 
 app.post('/updaterecord', function (req, res) {
-    console.log(JSON.parse(req.body));
+    console.log(req.body);
 
     
     var sfreq = {
@@ -62,7 +62,7 @@ app.post('/updaterecord', function (req, res) {
             'Authorization': 'OAuth ' + oauthToken,
             'Content-type':'application/json'
         },
-body:req.body
+body:'{"email":"test@test.commmmmmmmmmmmm"}'
     };
 console.log(sfreq);
 
