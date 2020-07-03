@@ -1,7 +1,7 @@
 var context={};
 
 var oauthToken='';
-
+var    instanceUrl='';
 var express = require('express'),
     bodyParser = require('body-parser'),
     request = require('request'),
@@ -18,7 +18,7 @@ app.use(express.static(__dirname + '/public'));
         var signedRequest = decode(req.body.signed_request, consumerSecret);
                context = signedRequest.context;
             oauthToken = signedRequest.client.oauthToken;
-        var    instanceUrl = signedRequest.client.instanceUrl;
+            instanceUrl = signedRequest.client.instanceUrl;
         var    query = "SELECT Id, FirstName, LastName, Phone, Email, AccountId FROM Contact WHERE Id = '" + context.environment.record.Id + "'";
 
         var    contactRequest = {
@@ -50,9 +50,23 @@ app.use(express.static(__dirname + '/public'));
 
 });
 
-app.post('/page', function (req, res) {
+app.post('/updaterecord', function (req, res) {
+    var    sfreq = {
+        url: instanceUrl + '/services/data/v29.0/query?q=' + query,
+        headers: {
+            'Authorization': 'OAuth ' + oauthToken
+        }
+    };
+
+console.log(context);
+console.log(req);
+var signedRequestJson=JSON.stringify(context);
+
+request(sfreq, function(err, response, body) {
+    res.send(body);
+
+});
    
-    res.send('A message!');
 });
 
 
