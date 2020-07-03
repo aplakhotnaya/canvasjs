@@ -1,8 +1,3 @@
-var express = require('express'),
-    bodyParser = require('body-parser'),
-    request = require('request'),
-    decode = require('salesforce-signed-request'),
-    consumerSecret = process.env.CONSUMER_SECRET;
 
     function updaterecord(oauthToken,context) {
 console.log(oauthToken);
