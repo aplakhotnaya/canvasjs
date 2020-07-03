@@ -7,7 +7,17 @@
 <body>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="sfRequest.js"></script>
+  
+    <script src=" canvas-all.js"></script>
+<script>
+    Sfdc.canvas.client.refreshSignedRequest(function(data) {
+        if (data.status === 200) {
+            var signedRequest =  data.payload.response;
+            var part = signedRequest.split('.')[1];
+            var obj = JSON.parse(Sfdc.canvas.decode(part));
+        }
+    });
+</script>
 <div class="canvas-app">
     <img src="nodejs.png"/>
     <p>Hello, <%= context.user.firstName %>. This is a web app written in Node.js embedded in your Salesforce page (It could also be written in any other language).</p>
