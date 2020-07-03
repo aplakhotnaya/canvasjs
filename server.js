@@ -55,6 +55,7 @@ app.post('/updaterecord', function (req, res) {
     console.log(req.body);
     var    sfreq = {
         url: instanceUrl + '/services/data/v20.0/sobjects/Contact/'+context.environment.record.Id,
+        method:'POST',
         headers: {
             'Authorization': 'OAuth ' + oauthToken
         },
@@ -62,7 +63,7 @@ body:'{"email":"test@test.com"}'
     };
 console.log(sfreq);
 
-request.post(sfreq, function(err, response, body) {
+request(sfreq, function(err, response, body) {
     res.send(response.statusCode );
 
 });
