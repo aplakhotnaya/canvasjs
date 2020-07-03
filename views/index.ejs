@@ -31,14 +31,17 @@
 
 // Client Side Ajax Script
 <script>
-  /*  $('.btn').click(function () {
-        $.post('/page', {data: 'blah'}, function (data) {
-        console.log(data);
+
+    $("#like").click(function(){
+        $.post("/page",
+        {
+          name: "Donald Duck",
+          city: "Duckburg"
+        },
+        function(data,status){
+          alert("Data: " + data + "\nStatus: " + status);
+        });
       });
-    }, '{}');*/
-    $('#like').click(function(){
-        $.post('/page');
-    });
 
 
 </script>
