@@ -71,6 +71,29 @@ alert("Success");
     <img src="nodejs.png"/>
     <p>Hello, <%= context.user.firstName %>. This is a web app written in Node.js embedded in your Salesforce page (It could also be written in any other language).</p>
     <p>It is aware of its environment. For example, here are a few things it knows:</p>
+    
+    
+    
+    <div>
+        <br>
+        <h2 class="sub-title">Querying Salesforce Data A</h2>
+        <p>Once initialized, you can use the following function to query Salesforce. </p>
+        <pre>  cnv.querySalesforce(query,callback)</pre>
+        <pre>  //query for my 6 most recently viewed accounts
+          var query = 'SELECT Id,Name,LastViewedDate FROM Account ORDER BY LastViewedDate DESC NULLS LAST LIMIT 6'
+          cnv.querySalesforce(query,callback);</pre>
+        <div style="color:rgb(0,112,210)">
+          <button id="recentSfAccounts" onclick="recentSfAccounts()">try this example</button>
+        </div>
+        <br>
+        <ul class="sfQueryResults">
+        </ul>
+        
+        </div>
+        <script src="ejs.js"></script>
+        <script src="queryA.js"></script>
+    
+    
     <table>
         <tr><td>User:</td><td><%= context.user.fullName %></td></tr>
         <tr><td>Object:</td><td><%= context.environment.record.attributes.type %></td></tr>
