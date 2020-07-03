@@ -60,17 +60,12 @@ app.post('/updaterecord', function (req, res) {
             'Authorization': 'OAuth ' + oauthToken,
             'Content-type':'application/json'
         },
-body:'{"email":"test@test.com"}'
+body:req.body
     };
 console.log(sfreq);
 
 request(sfreq, function(err, response, body) {
-    console.log(response.status);
-    console.log(response.statusCode);
-    console.log(body);
-    
-    res.sendStatus(response.status );
-
+    res.sendStatus(body );
 });
    
 });
