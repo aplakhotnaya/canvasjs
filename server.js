@@ -54,17 +54,18 @@ app.use(express.static(__dirname + '/public'));
 app.post('/updaterecord', function (req, res) {
     console.log(req.body);
     var    sfreq = {
-        url: instanceUrl + '/services/data/v29.0/query?q=',
+        url: instanceUrl + '/services/data/v20.0/sobjects/Contact/'+context.environment.record.Id,
         headers: {
             'Authorization': 'OAuth ' + oauthToken
-        }
+        },
+body:'{"email":"test@test.com"}'
     };
 console.log(sfreq);
-res.send('sfreq');
-//request(sfreq, function(err, response, body) {
-//   
 
-//});
+request.post(sfreq, function(err, response, body) {
+    res.send(response.statusCode );
+
+});
    
 });
 

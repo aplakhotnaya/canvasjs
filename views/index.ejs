@@ -34,10 +34,7 @@
 
     $("#like").click(function(){
         $.post("/updaterecord",
-        {
-          name: "Donald Duck",
-          city: "Duckburg"
-        },
+        '<%= contact %>' ,
         function(data,status){
           alert("Data: " + data + "\nStatus: " + status);
         });
