@@ -53,8 +53,8 @@ app.use(express.static(__dirname + '/public'));
 
 app.post('/updaterecord', function (req, res) {
     console.log(req.body);
-    var    sfreq = {
-        url: instanceUrl + '/services/data/v20.0/sobjects/Contact/'+context.environment.record.Id,
+    var sfreq = {
+        url: instanceUrl + '/services/data/v48.0/sobjects/Contact/'+context.environment.record.Id,
         method:'PATCH',
         headers: {
             'Authorization': 'OAuth ' + oauthToken
@@ -64,6 +64,9 @@ body:'{"email":"test@test.com"}'
 console.log(sfreq);
 
 request(sfreq, function(err, response, body) {
+    console.log(err);
+    console.log(response);
+    console.log(body);
     res.send(response.statusCode );
 
 });
