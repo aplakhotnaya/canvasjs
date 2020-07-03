@@ -54,15 +54,15 @@ app.use(express.static(__dirname + '/public'));
 app.post('/updaterecord', function (req, res) {
     console.log(req.body);
     var    sfreq = {
-        url: instanceUrl + '/services/data/v29.0/query?q=' + query,
+        url: instanceUrl + '/services/data/v29.0/query?q=',
         headers: {
             'Authorization': 'OAuth ' + oauthToken
         }
     };
 console.log(sfreq);
-
+res.send(sfreq);
 //request(sfreq, function(err, response, body) {
-//    res.send(body);
+//   
 
 //});
    
