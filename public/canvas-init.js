@@ -51,9 +51,10 @@
         var cnvAppDiv = document.getElementById('app');
         var height = window.height;
         var width = cnvAppDiv.offsetWidth;
-        var sideBarWidth = document.getElementById('sidebar').offsetWidth;
+
+        //var sideBarWidth = document.getElementById('sidebar').offsetWidth;
         document.body.style.height = height + "px";
-        document.getElementById('content').style.width = width - sideBarWidth + "px";
+        //document.getElementById('content').style.width = width - sideBarWidth + "px";
     }
 
     window.resizeSfCanvasBody = resizeSfCanvasBody;
