@@ -90,10 +90,25 @@ alert("Success");
         </ul>
         
         </div>
-        
+        <div>
+            <br>
+            <h2 class="sub-title">Querying Salesforce Data B</h2>
+            <p>You can expirment with your SOQL here and see how the data (including error messages) 
+                is returned from the Canvas SDK below.</p>
+            </br>
+            <textarea rows="5" class="slds-textarea" id="query" placeholder="foo"></textarea>
+            <br>
+            <div style="color:rgb(0,112,210)">
+              <button id="runQuery" onclick="runQuery();">try this example</button>
+              <button id="clearResult" onclick="clearResult();">clear result</button>
+            </div>
+            <pre class="sfQueryResult"></pre>
+            </div>
+          
+          
         <script src="ejs.js"></script>
         <script src="queryA.js"></script>
-    
+        <script src="queryB.js"></script>
     
     <table>
         <tr><td>User:</td><td><%= context.user.fullName %></td></tr>
