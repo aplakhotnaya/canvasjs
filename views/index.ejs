@@ -23,41 +23,7 @@
     </table>
     <%- JSON.stringify(context) %>
 <input type="text" value="<%= contact.Email %>"/>
-<button onclick="updaterecord(<%= oauthToken %>,<%= context %>)"> update record</button>
-
-
-<script>
-try{
-   
-    var enc= '<%=signedRequestJson%>';
-    console.log(enc);
-    
-   
-  /*  var sr = JSON.parse(unescape(enc));
-    console.log(sr);
-    // Reference the Chatter user's URL from Context.Links object.
-    var url = sr.context.links.chatterFeedsUrl+"/news/"+sr.context.user.userId+"/feed-items";
-    var body = {body : {messageSegments : [{type: "Text", text: "Some Chatter Post"}]}};
-    Sfdc.canvas.client.ajax(url,
-    {client : sr.client,
-    method: 'POST',
-    contentType: "application/json",
-    data: JSON.stringify(body),
-    success : function(data) {
-    if (201 === data.status) {
-    alert("Success");
-    }
-    }
-    });*/
-}catch(e){
-console.log(e)
-}
-
-
-</script>
-
-
-
+<button onclick='updaterecord("<%= oauthToken %>", "<%= context %>")' > update record</button>
 
 
 
