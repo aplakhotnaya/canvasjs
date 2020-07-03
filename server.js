@@ -55,7 +55,7 @@ app.post('/updaterecord', function (req, res) {
     console.log(req.body);
     var    sfreq = {
         url: instanceUrl + '/services/data/v20.0/sobjects/Contact/'+context.environment.record.Id,
-        method:'POST',
+        method:'PATCH',
         headers: {
             'Authorization': 'OAuth ' + oauthToken
         },
