@@ -18,21 +18,22 @@
         <tr><td>Id:</td><td><%= context.environment.record.Id %></td></tr>
     </table>
     <table>
-        <tr><td>FirstName:</td><td><%= contact.FirstName %><input type="text" value="<%= contact.FirstName %>"/></td></tr>
-        <tr><td>LastName:</td><td><%= contact.LastName %><input type="text" value="<%= contact.LastName %>"/></td></tr>
-        <tr><td>Phone:</td><td><%= contact.Phone %><input type="text" value="<%= contact.Phone %>"/></td></tr>
-        <tr><td>Email:</td><td><%= contact.Email %><input type="text" value="<%= contact.Email %>"/></td></tr>
+        <tr><td>FirstName:</td><td><%= contact.FirstName %></td></tr>
+        <tr><td>LastName:</td><td><%= contact.LastName %></td></tr>
+        <tr><td>Phone:</td><td><%= contact.Phone %></td></tr>
+        <tr><td>Email:</td><td><%= contact.Email %></td></tr>
     </table>
-   
+  
+<input type="text" value="<%= contact.Email %>"/>
 
+<button class="btn btn-success" id="like">Install</button>
 
-<button class="btn btn-success" id="like">update record</button>
 
 <script>
 
     $("#like").click(function(){
         $.post("/updaterecord",
-        '<%= contact %>' ,
+        '<%- JSON.stringify(contact) %>' ,
         function(data,status){
           console.log("Data: " + data + "\nStatus: " + status);
         });
