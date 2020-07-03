@@ -44,32 +44,14 @@ console.log(sr);
 
 
 </script>
-<script>
 
-   
-
-
-/*var url = sr.context.links.chatterFeedsUrl+"/news/"+sr.context.user.userId+"/feed-items";
-var body = {body : {messageSegments : [{type: "Text", text: "Some Chatter Post"}]}};
-Sfdc.canvas.client.ajax(url,
-{client : sr.client,
-method: 'POST',
-contentType: "application/json",
-data: JSON.stringify(body),
-success : function(data) {
-if (201 === data.status) {
-alert("Success");
-}
-}
-});*/
-
-</script>
 
 
 
 <div class="canvas-app" id="app" >
     <img src="nodejs.png"/>
-    <p>Hello, <%= context.user.firstName %>. This is a web app written in Node.js embedded in your Salesforce page (It could also be written in any other language).</p>
+    <p>Hello, <%= context.user.firstName %>. 
+        This is a web app written in Node.js embedded in your Salesforce page (It could also be written in any other language).</p>
     <p>It is aware of its environment. For example, here are a few things it knows:</p>
     
     
@@ -105,16 +87,46 @@ alert("Success");
             <pre class="sfQueryResult"></pre>
             </div>
           
-          
+            <div>
+                <br/>
+                <h2 class="sub-title">Editing Salesforce Data</h2>
+                <p>Once initialized, you can use the following functions to create, edit and delete salesforce records. </p>
+                <pre>  //edit function
+                  cnv.editSalesforce(object,request,callback)
+                  //delete function
+                  cnv.deleteSalesforce(object, id, callback)
+                </pre>
+                <p>If the Id property is set in the request object, then the function will PATCH the specified record with the request object. If the Id property is not included in the request object, then a new record will be created via POST.</p>
+                <h3 class="sub-title">Example 2</h3>
+                <pre>  //create a new Task for tomorrow
+                  var due = new Date();
+                  //for tasks, we just pass the date part of the string.
+                  due.setDate(due.getDate()+1).toISOString();
+                  var request = {'ActivityDate':due.substring(0,10), 'Subject':'Test Task From the canvas-starter-kit'}
+                  cnv.editSalesforce('Task', request, callback);
+                </pre>
+                <div style="color:rgb(0,112,210)">
+                  <button id="newTask" onclick="newTask()">try this example</button>
+                </div>
+                <br/>
+                <div id="sfEditResult">
+                </div>
+                
+               
         <script src="ejs.js"></script>
         <script src="queryA.js"></script>
         <script src="queryB.js"></script>
+        <script src="editing.js"></script>
     
     <table>
         <tr><td>User:</td><td><%= context.user.fullName %></td></tr>
         <tr><td>Object:</td><td><%= context.environment.record.attributes.type %></td></tr>
         <tr><td>Id:</td><td><%= context.environment.record.Id %></td></tr>
     </table>
+
+
+<!-- 
+
     <table>
         <tr><td>FirstName:</td><td><%= contact.FirstName %></td></tr>
         <tr><td>LastName:</td><td><%= contact.LastName %></td></tr>
@@ -145,9 +157,6 @@ alert("Success");
     <p>It can also access more data in Salesforce using the REST APIs. With context and APIs, Canvas makes it easy to integrate applications written in any language inside your Salesforce pages.</p>
     <p>For example, the QR Code below is generated in Node.js. Scan it to create a contact on your mobile phone:</p>
     <%- imgTag %>
-
-
-
-
+-->
 </div>
 </body>
