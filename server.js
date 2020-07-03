@@ -57,7 +57,8 @@ app.post('/updaterecord', function (req, res) {
         url: instanceUrl + '/services/data/v48.0/sobjects/Contact/'+context.environment.record.Id,
         method:'PATCH',
         headers: {
-            'Authorization': 'OAuth ' + oauthToken
+            'Authorization': 'OAuth ' + oauthToken,
+            'Content-type':'application/json'
         },
 body:'{"email":"test@test.com"}'
     };
