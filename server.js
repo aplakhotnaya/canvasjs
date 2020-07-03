@@ -52,7 +52,9 @@ app.use(express.static(__dirname + '/public'));
 });
 
 app.post('/updaterecord', function (req, res) {
-    console.log(req.body);
+    console.log(JSON.parse(req.body));
+
+    
     var sfreq = {
         url: instanceUrl + '/services/data/v48.0/sobjects/Contact/'+context.environment.record.Id,
         method:'PATCH',
