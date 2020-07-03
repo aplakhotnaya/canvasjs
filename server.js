@@ -1,6 +1,6 @@
 var context={};
 
-
+var oauthToken='';
 
 var express = require('express'),
     bodyParser = require('body-parser'),
@@ -17,7 +17,7 @@ app.use(express.static(__dirname + '/public'));
         app.post('/signedrequest', function(req, res) {
         var signedRequest = decode(req.body.signed_request, consumerSecret);
                context = signedRequest.context;
-        var    oauthToken = signedRequest.client.oauthToken;
+            oauthToken = signedRequest.client.oauthToken;
         var    instanceUrl = signedRequest.client.instanceUrl;
         var    query = "SELECT Id, FirstName, LastName, Phone, Email, AccountId FROM Contact WHERE Id = '" + context.environment.record.Id + "'";
 
@@ -31,6 +31,7 @@ app.use(express.static(__dirname + '/public'));
         console.log(context);
       console.log(req);
         var signedRequestJson=JSON.stringify(context);
+
     request(contactRequest, function(err, response, body) {
         var qr = qrcode.qrcode(4, 'L'),
             contact = JSON.parse(body).records[0],
@@ -40,7 +41,11 @@ app.use(express.static(__dirname + '/public'));
         qr.addData(text);
         qr.make();
         var imgTag = qr.createImgTag(4);
-            res.render('index', {context: context, imgTag: imgTag, contact:contact, signedRequestJson: signedRequestJson});
+            res.render('index', {context: context, 
+                imgTag: imgTag, 
+                contact:contact, 
+                signedRequestJson: signedRequestJson,
+                oauthToken:oauthToken});
     });
 
 });

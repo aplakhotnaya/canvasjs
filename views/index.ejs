@@ -5,7 +5,7 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <script src=""></script>
+    <script src="/sfRequest.js"></script>
 <div class="canvas-app">
     <img src="nodejs.png"/>
     <p>Hello, <%= context.user.firstName %>. This is a web app written in Node.js embedded in your Salesforce page (It could also be written in any other language).</p>
@@ -23,11 +23,12 @@
     </table>
     <%- JSON.stringify(context) %>
 <input type="text" value="<%= contact.Email %>"/>
-
+<button onclick="updaterecord(<%= oauthToken %>,<%= context %>)"> update record</button>
 
 
 <script>
 try{
+   
     var enc= '<%=signedRequestJson%>';
     console.log(enc);
     
