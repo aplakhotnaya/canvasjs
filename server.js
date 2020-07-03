@@ -52,23 +52,29 @@ app.use(express.static(__dirname + '/public'));
 });
 
 app.post('/updaterecord', function (req, res) {
-    console.log(req.body);
+    try{
+        console.log(req.body);
 
     
-    var sfreq = {
-        url: instanceUrl + '/services/data/v48.0/sobjects/Contact/'+context.environment.record.Id,
-        method:'PATCH',
-        headers: {
-            'Authorization': 'OAuth ' + oauthToken,
-            'Content-type':'application/json'
-        },
-body:'{"email":"test@test.commmmmmmmmmmmm"}'
-    };
-console.log(sfreq);
+        var sfreq = {
+            url: instanceUrl + '/services/data/v48.0/sobjects/Contact/'+context.environment.record.Id,
+            method:'PATCH',
+            headers: {
+                'Authorization': 'OAuth ' + oauthToken,
+                'Content-type':'application/json'
+            },
+    body:'{"email":"test@test.commmmmmmmmmmmm"}'
+        };
+    console.log(sfreq);
+    
+    request(sfreq, function(err, response, body) {
+        res.sendStatus(response.statusCode );
+    });
+    }catch(e){
+        console.log(e);
+        res.sendStatus(e );
+    }
 
-request(sfreq, function(err, response, body) {
-    res.sendStatus(body );
-});
    
 });
 
