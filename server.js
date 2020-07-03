@@ -60,7 +60,7 @@ app.post('/updaterecord', function (req, res) {
         }
     };
 console.log(sfreq);
-res.send(sfreq);
+res.send('sfreq');
 //request(sfreq, function(err, response, body) {
 //   
 
