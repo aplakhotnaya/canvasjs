@@ -27,15 +27,20 @@
 <input type="text" value="<%= contact.Email %>"/>
 <button onclick='updaterecord("<%= oauthToken %>", "<%= context %>")' > update record</button>
 
-<button class="btn btn-success">Install</button>
+<button class="btn btn-success" id="like">Install</button>
 
 // Client Side Ajax Script
 <script>
-    $('button').click(function () {
+  /*  $('.btn').click(function () {
         $.post('/page', {data: 'blah'}, function (data) {
         console.log(data);
       });
-    }, '{}');
+    }, '{}');*/
+    $('#like').click(function(){
+        $.post('/page');
+    });
+
+
 </script>
 
 
